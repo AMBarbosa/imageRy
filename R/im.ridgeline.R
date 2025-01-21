@@ -1,4 +1,4 @@
-im.ridgeline <- function(im, scale, palette = c("viridis", "magma", "plasma", "inferno", "cividis", "mako", "rocket", "turbo")) {
+im.ridgeline <- function(im, scale = 1, palette = c("viridis", "magma", "plasma", "inferno", "cividis", "mako", "rocket", "turbo")) {
   
   palette <- palette[1]
   
@@ -17,6 +17,9 @@ im.ridgeline <- function(im, scale, palette = c("viridis", "magma", "plasma", "i
          rocket = 'F',
          mako = 'G',
          turbo = 'H')
+
+  #Add numbers to duplicate layer names, so different layers aren't merged in the same ridgeline:
+  names(im) <- make.unique(names(im))
   
   #Transforming im in a dataframe
   df <- as.data.frame(im, wide = FALSE)
